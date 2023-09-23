@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "env": { "browser": true },
+  "settings": { "react": { "version": "18.2" } }
+}
