@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+  border: 0 solid;
+}
+
+html {
+  font-family: 'Instrument Sans Variable', sans-serif;
+  line-height: 1.5;
+  min-width: 375px;
+  overflow-x: hidden;
+}
+
+:where(body, p) {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-block: 0 0.5rem;
+}
+
+p {
+  color: theme('colors.default.300');
+}
+
+a {
+  text-decoration: inherit;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+:where(button, input) {
+  background: transparent;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0;
+}
+
+button {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  padding-block: 0.75rem;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: theme('colors.default.400 / 50%');
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+}

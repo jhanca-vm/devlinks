@@ -1,5 +1,5 @@
 import '@fontsource-variable/instrument-sans'
-import '@unocss/reset/tailwind.css'
+import './style.css'
 import 'virtual:uno.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'

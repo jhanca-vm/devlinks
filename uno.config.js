@@ -1,7 +1,15 @@
-import { defineConfig } from 'unocss'
+import {
+  defineConfig,
+  transformerDirectives,
+  transformerVariantGroup
+} from 'unocss'
+import clsx from 'clsx'
 
 export default defineConfig({
   theme: {
+    boxShadow: {
+      DEFAULT: "0px 0px 32px theme('colors.primary.300 / 25%')"
+    },
     colors: {
       default: {
         50: '#ffffff',
@@ -20,5 +28,15 @@ export default defineConfig({
     fontFamily: {
       sans: '"Instrument Sans Variable", sans-serif'
     }
-  }
+  },
+  shortcuts: [
+    {
+      'btn-primary': clsx(
+        'bg-primary-300 text-default-50 transition',
+        'hover:(bg-primary-200 shadow)',
+        'disabled:(bg-primary-300/60 shadow-none)'
+      )
+    }
+  ],
+  transformers: [transformerDirectives(), transformerVariantGroup()]
 })
