@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('should show errors if invalid data is entered', async ({ page }) => {
+test('display errors if invalid data is entered', async ({ page }) => {
   await page.goto('/signup')
 
   const emailInput = page.getByLabel('Email address')

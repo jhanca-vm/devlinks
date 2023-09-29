@@ -7,11 +7,13 @@
     "plugin:jsx-a11y/recommended",
     "plugin:unicorn/recommended"
   ],
-  "env": { "browser": true },
+  "env": { "browser": true, "node": true },
   "plugins": ["react-refresh"],
   "settings": { "react": { "version": "18.2" } },
   "rules": {
     "react/prop-types": "off",
-    "react-refresh/only-export-components": "warn"
+    "react-refresh/only-export-components": "warn",
+    "jsx-a11y/label-has-associated-control": "off",
+    "unicorn/no-null": "off"
   }
 }
