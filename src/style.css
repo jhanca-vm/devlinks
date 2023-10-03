@@ -72,12 +72,26 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
+input {
+  caret-color: theme('colors.primary.300');
+  outline: none;
+  width: 100%;
+}
+
 input::placeholder {
   color: theme('colors.default.400 / 50%');
 }
 
 .mockup * {
   border-color: theme('colors.default.300');
+}
+
+.picture-input span {
+  display: none;
+}
+
+.picture-input:hover span {
+  display: flex;
 }
 
 @media (min-width: 640px) {

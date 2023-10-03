@@ -13,7 +13,7 @@ export default function Links() {
   const removeLink = useLinksStore(state => state.removeLink)
 
   return (
-    <section className="flex flex-col">
+    <>
       <div className="p-6 border-b sm:p-10">
         <h1>Customize your links</h1>
         <p>
@@ -65,12 +65,12 @@ export default function Links() {
         className="btn-primary m-4 sm:(my-6 mr-10 ml-auto w-fit px-7)"
         disabled={
           links.some(({ value, error }) => !value || error) ||
-          compare(links, session?.user?.user_metadata?.links || [])
+          compare(links, session.user?.user_metadata?.links || [])
         }
         onClick={save}
       >
         Save
       </button>
-    </section>
+    </>
   )
 }

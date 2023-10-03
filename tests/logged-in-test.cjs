@@ -7,7 +7,10 @@ exports.test = test.extend({
       {
         origin: 'http://localhost:4173',
         localStorage: [
-          { name: 'sb-ccwsaynaptcvbvfgnnwv-auth-token', value: '{}' }
+          {
+            name: 'sb-ccwsaynaptcvbvfgnnwv-auth-token',
+            value: '{"user":{"email":"email@example.com"}}'
+          }
         ]
       }
     ]

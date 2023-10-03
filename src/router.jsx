@@ -7,6 +7,7 @@ import Editor from './components/editor'
 import Login from './routes/login'
 import Signup from './routes/signup'
 import Links from './routes/links'
+import Profile from './routes/profile'
 
 const router = createBrowserRouter([
   {
@@ -28,13 +29,13 @@ const router = createBrowserRouter([
     loader: () => {
       const session = getSession()
 
-      if (!session) return redirect('/')
+      if (!session?.user?.email) return redirect('/')
 
       return null
     },
     children: [
       { path: 'editor/links', element: <Links /> },
-      { path: 'editor/profile', element: <></> }
+      { path: 'editor/profile', element: <Profile /> }
     ]
   }
 ])

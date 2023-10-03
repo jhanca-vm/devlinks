@@ -59,12 +59,14 @@ export default function Editor() {
       <main
         className={clsx(
           'm-4 bg-default-50 rounded-3 sm:m-6',
-          'lg:(grid grid-cols-[40%_1fr] gap-x-6 bg-transparent)',
-          'lg:children:(h-fit bg-default-50 rounded-3)'
+          'xl:(grid grid-cols-[40%_1fr] gap-x-6 bg-transparent)',
+          'xl:children:(h-fit bg-default-50 rounded-3)'
         )}
       >
         <PhoneMockup />
-        <Outlet />
+        <section className="flex flex-col">
+          <Outlet />
+        </section>
       </main>
       <Dialog />
     </>

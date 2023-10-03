@@ -1,7 +1,9 @@
 import clsx from 'clsx'
+import camelCase from 'just-camel-case'
 
 /**
  * @param {Object} props
+ * @param {string} [props.className]
  * @param {string} props.id
  * @param {string} props.label
  * @param {'text'|'email'|'password'|'url'} props.type
@@ -13,6 +15,7 @@ import clsx from 'clsx'
  * @param {import('react').FocusEventHandler<HTMLInputElement>} [props.onBlur]
  */
 export default function Field({
+  className,
   id,
   label,
   type,
@@ -23,45 +26,39 @@ export default function Field({
   onInput,
   onBlur
 }) {
-  const inputAttributes = {
-    type,
-    id,
-    name: id,
-    value,
-    placeholder,
-    onInput,
-    onBlur
-  }
-
   return (
-    <div>
-      <label htmlFor={id} className="mb-1 text-3">
+    <div className={className}>
+      <label
+        htmlFor={id}
+        className={clsx('block mb-1 text-3', !icon && 'sm:text-default-300')}
+      >
         {label}
       </label>
-      {icon ? (
-        <label
-          className={clsx(
-            'flex py-3 px-4 bg-default-50 rounded-2 border transition',
-            error
-              ? 'border-danger'
-              : 'focus-within:(border-primary-300 shadow shadow-primary-300/25)'
-          )}
-        >
+      <label
+        className={clsx(
+          'flex py-3 px-4 border bg-default-50 rounded-2 transition',
+          error
+            ? 'border-danger'
+            : 'focus-within:(border-primary-300 shadow shadow-primary-300/25)'
+        )}
+      >
+        {icon && (
           <img className="mr-3" src={icon} alt="" width="16" height="16" />
-          <input
-            className={clsx(
-              'w-full outline-none caret-primary-300',
-              error && type === 'url' && 'text-danger'
-            )}
-            {...inputAttributes}
-          />
-          {error && (
-            <span className="min-w-fit ml-3 text-3 text-danger">{error}</span>
-          )}
-        </label>
-      ) : (
-        <input {...inputAttributes} />
-      )}
+        )}
+        <input
+          className={error && type === 'url' ? 'text-danger' : undefined}
+          type={type}
+          name={camelCase(id)}
+          id={id}
+          value={value}
+          placeholder={placeholder}
+          onInput={onInput}
+          onBlur={onBlur}
+        />
+        {error && (
+          <span className="min-w-fit ml-3 text-3 text-danger">{error}</span>
+        )}
+      </label>
     </div>
   )
 }
