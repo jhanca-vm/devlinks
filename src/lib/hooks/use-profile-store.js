@@ -18,14 +18,14 @@ import { create } from 'zustand'
 import getSession from '../utils/get-session'
 
 const session = getSession()
-const data = session.user?.user_metadata
+const data = session?.user?.user_metadata
 
 /** @type {UseProfileStoreType} */
 const useProfileStore = create(set => ({
   picture: data?.picture || null,
   firstName: data?.firstName || '',
   lastName: data?.lastName || '',
-  email: session.user.email,
+  email: session?.user.email,
   update: data => set(data)
 }))
 

@@ -10,6 +10,8 @@ import useProfileStore from '../lib/hooks/use-profile-store'
 export default function PictureField({ className, onChange }) {
   const picture = useProfileStore(state => state.picture)
   const pictureUrl = useMemo(() => {
+    if (!picture) return null
+    
     return typeof picture === 'string' ? picture : URL.createObjectURL(picture)
   }, [picture])
 
@@ -23,12 +25,12 @@ export default function PictureField({ className, onChange }) {
       >
         <label
           className={clsx(
-            picture && 'picture-input',
+            pictureUrl && 'picture-input',
             'w-48 aspect-square bg-primary-100 bg-cover rounded-3 font-600',
             'text-primary-300 cursor-pointer'
           )}
           style={
-            picture ? { backgroundImage: `url(${pictureUrl})` } : undefined
+            pictureUrl ? { backgroundImage: `url(${pictureUrl})` } : undefined
           }
         >
           <span

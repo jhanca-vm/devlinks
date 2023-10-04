@@ -10,13 +10,12 @@ import supabase from '../supabase'
 import useDialogStore from './use-dialog-store'
 import useProfileStore from './use-profile-store'
 
-const { user } = getSession()
-
 export default function useProfile() {
   const [isSaving, setIsSaving] = useState(false)
   const { update, ...data } = useProfileStore(store => store)
   const [errors, setErrors] = useState({})
   const showDialog = useDialogStore(state => state.showDialog)
+  const { user } = getSession() || {}
 
   const hasChanges = useMemo(() => {
     return (
@@ -27,10 +26,10 @@ export default function useProfile() {
         picture: user?.user_metadata?.picture || null,
         firstName: user?.user_metadata?.firstName || '',
         lastName: user?.user_metadata?.lastName || '',
-        email: user.email
+        email: user?.email
       })
     )
-  }, [isSaving, data])
+  }, [isSaving, data, user])
 
   /** @type {import('react').ChangeEventHandler<HTMLInputElement>} */
   const setPicture = ({ target: { files } }) => {

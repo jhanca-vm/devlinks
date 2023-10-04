@@ -1,6 +1,7 @@
 import { redirect } from 'react-router-dom'
 import { email, minLength, parseAsync, string } from 'valibot'
 import supabase from '../supabase'
+import updateStores from '../utils/update-stores'
 
 /** @param {import('react-router-dom').ActionFunctionArgs} */
 export default async function signup({ request }) {
@@ -18,12 +19,14 @@ export default async function signup({ request }) {
   ])
 
   if (emailAddress.status === 'fulfilled' && password.status === 'fulfilled') {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: emailAddress.value,
       password: password.value
     })
 
     if (error) return { auth: error.message }
+
+    updateStores(data.user)
 
     return redirect('/editor/links')
   }

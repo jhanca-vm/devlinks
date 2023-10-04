@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom'
 import platforms from '../lib/platforms'
 import useLinksStore from '../lib/hooks/use-links-store'
 import useProfileStore from '../lib/hooks/use-profile-store'
+import ProfilePicture from './profile-picture'
+import Name from './name'
+import Email from './email'
 
 export default function PhoneMockup() {
   const location = useLocation()
@@ -38,42 +41,12 @@ export default function PhoneMockup() {
             <span className="h-3.25 w-8 border-t border-l rounded-tl-3" />
           </div>
           <div className="mt-6.5 mb-11 h-120 overflow-y-auto px-6 text-center">
-            <figure
-              className={clsx(
-                'h-24 w-24 mx-auto bg-#eee rounded-full overflow-hidden',
-                picture && 'border-4 border-primary-300'
-              )}
-            >
-              {picture && (
-                <img
-                  className="w-full h-full object-cover"
-                  src={
-                    typeof picture === 'string'
-                      ? picture
-                      : URL.createObjectURL(picture)
-                  }
-                  alt=""
-                />
-              )}
-            </figure>
-            <span
-              className={clsx(
-                'block mt-6 mb-3 font-600 text-4.5 truncate',
-                !firstName &&
-                  !lastName &&
-                  'h-4 w-40 mx-auto bg-#eee rounded-full'
-              )}
-            >
-              {firstName} {lastName}
-            </span>
-            <span
-              className={clsx(
-                'block text-3.5 truncate text-default-300',
-                !email && 'h-2 w-18 mx-auto bg-#eee rounded-full'
-              )}
-            >
-              {email}
-            </span>
+            <ProfilePicture className="w-24" picture={picture} />
+            <Name
+              className="font-600 text-4.5"
+              value={`${firstName} ${lastName}`}
+            />
+            <Email className="text-3.5" value={email} />
             <ul className="mt-14 grid gap-y-5">
               {list.map((link, index) => (
                 <li

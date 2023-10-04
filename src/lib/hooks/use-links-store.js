@@ -23,7 +23,7 @@ import getSession from '../utils/get-session'
 
 /** @type {UseLinksStoreType} */
 const useLinksStore = create(set => ({
-  links: getSession().user?.user_metadata?.links || [],
+  links: getSession()?.user?.user_metadata?.links || [],
   addLink: () => {
     set(({ links }) => ({
       links: [

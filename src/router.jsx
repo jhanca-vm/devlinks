@@ -8,6 +8,7 @@ import Login from './routes/login'
 import Signup from './routes/signup'
 import Links from './routes/links'
 import Profile from './routes/profile'
+import Preview from './routes/preview'
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     loader: () => {
       const session = getSession()
 
-      if (session) return redirect('/editor/links')
+      if (session?.user?.email) return redirect('/editor/links')
 
       return null
     },
@@ -37,6 +38,20 @@ const router = createBrowserRouter([
       { path: 'editor/links', element: <Links /> },
       { path: 'editor/profile', element: <Profile /> }
     ]
+  },
+  {
+    path: 'preview',
+    element: <Preview />,
+    loader: () => {
+      const session = getSession()
+
+      if (!session?.user?.user_metadata) {
+        localStorage.clear()
+        return redirect('/')
+      }
+
+      return null
+    }
   }
 ])
 
